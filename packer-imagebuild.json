@@ -1,0 +1,27 @@
+{
+    "builders": [
+        {
+            "type": "amazon-ebs",
+            "ami_name": "openmrsfrompacker",
+            "ami_description": "openmrsfrompacker",
+            "access_key": "AKXXXXXFSO6CH",
+            "secret_key": "XXXs72fpOJ0bpdZ4zlYRNOUQnAL6a6zqCdqzQTCfpk2",
+            "region": "us-east-1",
+            "instance_type": "t2.micro",
+            "source_ami": "ami-085925f297f89fce1",
+            "ssh_username": "ubuntu"
+
+    }],
+    "provisioners": [
+        {
+            "type": "shell",
+            "inline": [
+                "sudo apt-get update", 
+                "sudo apt-get install openjdk-8-jdk -y",
+                "sudo apt-get install tomcat8 -y",
+                "sudo cd /var/lib/tomcat8/webapps/"
+                "wget https://openmrsneel.s3.amazonaws.com/myapp/openmrs.war"
+            ]
+        }
+    ]
+}
